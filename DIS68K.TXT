@@ -1,0 +1,32 @@
+            Motorola MC68000 cross-disassembler by W. de Waal.
+
+This disassembler takes a binary file and disassembles it as MC68000 opcodes.
+(Similar to MSDOS DEBUG disassembly.)
+
+Usage: DIS68K filename [/f]
+Where: filename is compulsory and
+       /f is an optional switch to specify file output.
+
+The input file (filename.BIN) is the binary (Machine code). The optional map
+file (filename.MAP) maps the input file into code and data areas. Code areas
+are disassembled, data areas are dumped. An example of the map file is:
+
+romstart = 0x00002000
+0x00002000,0x00002100,code
+0x00002101,0x0000220f,data
+0x00002210,0x00002280,code
+0x00002281,0x00002fff,data
+
+This file tells the disassembler that the code normally starts at $2000. The
+first line maps $2000-$2100 as code, the second line maps $2101-$220f as data,
+and so forth.
+
+To disassemble a file, the entire file is mapped as code. Areas of data are
+then identified and specified as data. In this way a program can quickly be
+disassembled.
+
+The disassembly output is written to the screen, and to the file filename.DIS
+if the /f option is specified.
+
+Enjoy!
+W. de Waal (August 1993)
